@@ -36,7 +36,7 @@ class _RegisterPageState
         content: Text(
           message,
         ),
-      ),
+      ), 
     );
   }
 
