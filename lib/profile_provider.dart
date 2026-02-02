@@ -79,6 +79,7 @@ class _ProfileActions {
         .getPublicUrl(
           path,
         );
+    final cacheBustedUrl = '$url?t=${DateTime.now().millisecondsSinceEpoch}';
 
     await client
         .from(
@@ -86,7 +87,7 @@ class _ProfileActions {
         )
         .update(
           {
-            'avatar_url': url,
+            'avatar_url': cacheBustedUrl,
           },
         )
         .eq(
