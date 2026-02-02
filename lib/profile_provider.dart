@@ -71,7 +71,7 @@ class _ProfileActions {
             upsert: true,
           ),
         );
-
+    
     final url = client.storage
         .from(
           'avatars',
@@ -79,7 +79,8 @@ class _ProfileActions {
         .getPublicUrl(
           path,
         );
-    final cacheBustedUrl = '$url?t=${DateTime.now().millisecondsSinceEpoch}';
+
+    
 
     await client
         .from(
@@ -87,13 +88,16 @@ class _ProfileActions {
         )
         .update(
           {
-            'avatar_url': cacheBustedUrl,
+            'avatar_url': url,
           },
         )
         .eq(
           'id',
           user.id,
         );
+
+
+
   }
 
   /// Update user display name

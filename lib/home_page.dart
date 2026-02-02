@@ -94,7 +94,15 @@ class HomePage
           // Logout button
           IconButton(
             onPressed: () async {
+              // 1. Sign out from Supabase
               await SupabaseConfig.client.auth.signOut();
+
+              // 2. Clear Riverpod state (forces profileProvider to reset)
+              ref.invalidate(
+                profileProvider,
+              );
+
+              
               if (context.mounted) {
                 context.go(
                   '/login',
